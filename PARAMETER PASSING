@@ -1,54 +1,38 @@
 #include <stdio.h>
 
-void passByValue(int a);
-void passByReference(int *a);
-void passByArray(int arr[], int size);
+void passByValue(int x);
+void passByVariable(int *x);
+void passByReference(int &x);  // Note: This is only applicable in C++
 
 int main() {
-    int num = 10;
-    int arr[] = {1, 2, 3, 4, 5};
-    int size = sizeof(arr) / sizeof(arr[0]);
+    int num = 5;
 
-    printf("Original value of num: %d\n", num);
+    printf("Before passByValue: num = %d\n", num);
     passByValue(num);
-    printf("Value of num after passByValue: %d\n", num);
+    printf("After passByValue: num = %d\n", num);
 
-    printf("\nOriginal value of num: %d\n", num);
-    passByReference(&num);
-    printf("Value of num after passByReference: %d\n", num);
+    printf("\nBefore passByVariable: num = %d\n", num);
+    passByVariable(&num);
+    printf("After passByVariable: num = %d\n", num);
 
-    printf("\nOriginal array: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-    passByArray(arr, size);
-    printf("Array after passByArray: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+    printf("\nBefore passByReference: num = %d\n", num);
+    passByReference(num);
+    printf("After passByReference: num = %d\n", num);
 
     return 0;
 }
 
-void passByValue(int a) {
-    a = 20;
-    printf("Inside passByValue: %d\n", a);
+void passByValue(int x) {
+    x = 10;
+    printf("Inside passByValue: x = %d\n", x);
 }
 
-void passByReference(int *a) {
-    *a = 30;
-    printf("Inside passByReference: %d\n", *a);
+void passByVariable(int *x) {
+    *x = 20;
+    printf("Inside passByVariable: *x = %d\n", *x);
 }
 
-void passByArray(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        arr[i] *= 2;
-    }
-    printf("Inside passByArray: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+void passByReference(int &x) {
+    x = 30;
+    printf("Inside passByReference: x = %d\n", x);
 }
